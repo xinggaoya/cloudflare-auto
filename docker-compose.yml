@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  cloudflare-auto:
+    build: .
+    image: cloudflare-auto:latest
+    container_name: cloudflare-auto
+    environment:
+      - RUST_LOG=info
+      - BIND_ADDR=0.0.0.0:3000
+    ports:
+      - "5610:3000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: always
+

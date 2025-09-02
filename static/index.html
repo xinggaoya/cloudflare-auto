@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare IPv6自动更新</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 Cloudflare IPv6自动更新</h1>
+            <p>监控本地IPv6地址变化并自动更新到Cloudflare DNS</p>
+        </header>
+
+        <main>
+            <!-- 配置状态显示 -->
+            <section id="config-status" class="card">
+                <h2>配置状态</h2>
+                <div id="status-content">
+                    <p>正在检查配置状态...</p>
+                </div>
+            </section>
+
+            <!-- 配置表单 -->
+            <section id="config-form" class="card">
+                <h2>Cloudflare配置</h2>
+                <form id="cf-config-form">
+                    <div class="form-group">
+                        <label for="api-key">API密钥:</label>
+                        <input type="password" id="api-key" required 
+                               placeholder="输入Cloudflare API密钥">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="zone-id">区域ID:</label>
+                        <input type="text" id="zone-id" required 
+                               placeholder="输入区域ID">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="root-domain">根域名:</label>
+                        <input type="text" id="root-domain" required 
+                               placeholder="例如: example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="check-interval">检查间隔(秒):</label>
+                        <input type="number" id="check-interval" value="300" min="60" 
+                               placeholder="默认300秒(5分钟)">
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" id="test-btn" class="btn btn-secondary">
+                            🧪 测试配置
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            💾 保存配置
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- 域名选择 -->
+            <section id="domain-selection" class="card" style="display: none;">
+                <h2>域名选择</h2>
+                <div id="domain-list">
+                    <p>请先测试配置以获取域名列表...</p>
+                </div>
+                <div class="form-actions">
+                    <button id="select-all-btn" class="btn btn-secondary">
+                        📋 全选
+                    </button>
+                    <button id="save-selection-btn" class="btn btn-primary">
+                        💾 保存选择
+                    </button>
+                </div>
+            </section>
+
+            <!-- 当前状态 -->
+            <section id="current-status" class="card">
+                <h2>当前状态</h2>
+                <div class="status-info">
+                    <div class="status-item">
+                        <span class="label">当前IPv6:</span>
+                        <span id="current-ip" class="value">获取中...</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">最后记录IP:</span>
+                        <span id="last-ip" class="value">-</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="label">监控状态:</span>
+                        <span id="monitor-status" class="value">未启动</span>
+                    </div>
+                </div>
+                <button id="manual-update-btn" class="btn btn-primary">
+                    🔄 立即更新
+                </button>
+            </section>
+
+            <!-- DNS更新记录 -->
+            <section id="update-records" class="card">
+                <h2>📊 DNS更新记录</h2>
+                <div class="records-header">
+                    <span>最近更新记录</span>
+                    <button id="refresh-records-btn" class="btn btn-secondary btn-sm">
+                        🔄 刷新
+                    </button>
+                </div>
+                <div id="records-content">
+                    <p>正在加载更新记录...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- 消息提示 -->
+    <div id="toast" class="toast"></div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

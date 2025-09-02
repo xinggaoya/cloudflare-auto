@@ -1,0 +1,15 @@
+target
+.git
+.github
+.vscode
+.idea
+**/*.rs.bk
+**/*.swp
+**/*.log
+logs
+config.db
+test_fix.pdb
+Cargo.lock
+README.md
+CLAUDE.md
+

@@ -1,0 +1,46 @@
+[package]
+name = "cloudflare-auto"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Web框架
+axum = { version = "0.7", features = ["macros"] }
+tokio = { version = "1.0", features = ["full"] }
+
+
+# 数据库
+rusqlite = { version = "0.30", features = ["bundled"] }
+
+# HTTP客户端
+reqwest = { version = "0.11", features = ["json"] }
+
+# 配置管理
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# 网络地址处理
+ipnetwork = "0.20"
+
+# 日志
+log = "0.4"
+env_logger = "0.10"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json", "chrono"] }
+tracing-appender = "0.2"
+
+# 异步定时任务
+tokio-cron-scheduler = "0.8"
+
+# 工具库
+anyhow = "1.0"
+thiserror = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+
+# 前端相关 (用于Web界面)
+askama = "0.12"  # 模板引擎
+tower-http = { version = "0.5", features = ["fs", "cors"] }
+
+[dev-dependencies]
+# 测试相关
+mockito = "1.2"
