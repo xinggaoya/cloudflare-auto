@@ -31,9 +31,9 @@ cargo run
 
 1. 打开Web管理界面
 2. 输入您的Cloudflare配置：
-   - **API密钥**: `j1GSLLVNvNagjj157axK8OCzFVbwl9uOiyAg_eDh`
-   - **区域ID**: `5483309c28abb7ed76f58ea6372014b7`
-   - **根域名**: `moncn.top`
+   - **API密钥**: `YOUR_CLOUDFLARE_API_KEY`
+   - **区域ID**: `YOUR_ZONE_ID`
+   - **根域名**: `example.com`
 
 3. 点击"测试配置"验证连接
 4. 获取域名列表并选择要自动更新的子域名
